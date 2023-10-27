@@ -13,8 +13,6 @@ type MarkerPropsType = {
 };
 
 const Marker = ({ map, coordinates, shopData }: MarkerPropsType): null => {
-  // const { addMarkers } = useMarker();
-
   const infoWindowString = `<div style="box-sizing: border-box; padding: 8px;">
   <div>
   <h3 style="font-weight: 700; color: #0068c3; margin: 0 6px 0 0; line-height: 14px; display: inline;">
@@ -39,8 +37,6 @@ const Marker = ({ map, coordinates, shopData }: MarkerPropsType): null => {
         map: map,
         position: coordinates,
       });
-
-      // addMarkers({ marker, id: Number(shopData.shopId) });
     }
 
     naver.maps.Event.addListener(marker, "click", () => {

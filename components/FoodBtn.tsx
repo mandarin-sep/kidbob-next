@@ -8,12 +8,14 @@ import Dosirock from "@/public/assests/dosirock.svg";
 import Cafe from "@/public/assests/cafe.svg";
 import Store from "@/public/assests/store.svg";
 import StyledFoodBtn from "./StyledFoodBtn";
+import { useRouter } from "next/router";
 import { mutate } from "swr";
 
 const FoodBtn = () => {
-  //버튼을 클릭하면 해당하는 버튼의 shopBsType에 해당하는 숫자가 store로 dispatch
+  const router = useRouter();
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     const type = e.currentTarget.id;
+
     mutate("/shopType", type);
   };
   return (

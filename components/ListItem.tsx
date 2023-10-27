@@ -1,41 +1,13 @@
 import { listItem } from "@/types/store";
 import shopType from "@/functions/shopType";
+import useMap from "@/hooks/useMap";
 
 type ListItemPropsType = {
   item: listItem;
 };
 
 const ListItem = ({ item }: ListItemPropsType) => {
-  // const newCenter = new window.naver.maps.LatLng(shopLat, shopLon);
-
-  // const { map } = useMap();
-  // const { markers } = useMarker();
-  // const markerData = markers.find((item) => item.id === Number(shopId));
-
-  // //InfoWindow Data
-  // const infoWindowString = `<div style="box-sizing: border-box; padding: 8px;">
-  // <div>
-  // <h3 style="font-weight: 700; color: #0068c3; margin: 0 6px 0 0; line-height: 14px; display: inline;">
-  // ${shopName}
-  // </h3>
-  // <span style="color: #8f8f8f; font-size: 14px;">${shopType(shopBsType)}</span>
-  // </div>
-  // <div>${shopRoadAddr}</div>
-  // </div>
-  // `;
-
-  // const infoWindow = new naver.maps.InfoWindow({
-  //   content: infoWindowString,
-  // });
-
-  // //가게 정보를 클릭했을때 해당 가게를 지도의 중심으로 이동
-  // const handleClick = () => {
-  //   map?.setCenter(newCenter);
-  //   map?.setZoom(18);
-  //   if (map) {
-  //     infoWindow.open(map, markerData?.marker);
-  //   }
-  // };
+  const { map } = useMap();
   const {
     shopName,
     shopRoadAddr,
@@ -48,6 +20,48 @@ const ListItem = ({ item }: ListItemPropsType) => {
     wdToTime,
     shopId,
   } = item;
+
+  const infoWindowString = `<div style="box-sizing: border-box; padding: 8px;">
+  <div>
+  <h3 style="font-weight: 700; color: #0068c3; margin: 0 6px 0 0; line-height: 14px; display: inline;">
+  ${shopName} 
+  </h3>
+  <span style="color: #8f8f8f; font-size: 14px;">${shopType(shopBsType)}</span>
+  </div>
+  <div>${shopRoadAddr}</div>
+  </div>
+  `;
+
+  const infoWindow = new naver.maps.InfoWindow({
+    content: infoWindowString,
+  });
+
+  //가게 정보를 클릭했을때 해당 가게를 지도의 중심으로 이동
+  const handleClick = () => {
+    if (map) {
+      map.setZoom(18);
+      map.morph(new naver.maps.LatLng(shopLat, shopLon));
+
+      const newMarker = new naver.maps.Marker({
+        map: map,
+        position: new naver.maps.LatLng(shopLat, shopLon),
+      });
+
+      infoWindow.open(map, newMarker);
+
+      naver.maps.Event.addListener(newMarker, "click", () => {
+        if (infoWindow.getMap()) {
+          infoWindow.close();
+        } else {
+          infoWindow.open(map, newMarker!);
+        }
+      });
+
+      naver.maps.Event.addListener(map, "click", () => {
+        infoWindow.close();
+      });
+    }
+  };
 
   //평일 영업시간
   let shopTime;
@@ -63,6 +77,7 @@ const ListItem = ({ item }: ListItemPropsType) => {
     <li
       key={item.shopId}
       className="px-6 pt-5 pb-4 cursor-pointer hover:bg-slate-200/60"
+      onClick={handleClick}
     >
       <div>
         <h3 className="font-bold text-lg text-blue-600 my-0 mr-[6px] ml-0 inline">

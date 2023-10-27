@@ -2,7 +2,6 @@ import useMap from "@/hooks/useMap";
 import Marker from "./Marker";
 import useStores from "@/hooks/useStores";
 import { useRouter } from "next/router";
-import { listItem } from "@/types/store";
 
 const Markers = () => {
   const router = useRouter();
@@ -14,7 +13,6 @@ const Markers = () => {
   } = useStores(q as string, d as string);
 
   const { map } = useMap();
-
   if (isLoading) return null;
   return (
     <>
