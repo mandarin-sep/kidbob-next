@@ -4,7 +4,6 @@ import latlng from "@/public/assests/LatLng.json";
 import DistrictSelector from "./DistrictSelector";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
-import { fetchShops } from "@/api";
 
 const LocationSelector = () => {
   const [value, setValue] = useState("");
@@ -33,14 +32,14 @@ const LocationSelector = () => {
     const centerValue = latlng.filter((item) => {
       return item.sgg_nm === value && item.emd_nm === division;
     });
-    const centerPosition = new window.naver.maps.LatLng(
-      centerValue[0].center_lati,
-      centerValue[0].center_long
-    );
+    // const centerPosition = new naver.maps.LatLng(
+    //   centerValue[0].center_lati,
+    //   centerValue[0].center_long
+    // );
 
-    router.push(`main/${value}`);
-    const data = fetchShops(value);
-    mutate("/stores", data);
+    router.push(`main?q=${value}&d=${division}`);
+    mutate("/division", division);
+    mutate("/center", [centerValue[0].center_lati, centerValue[0].center_long]);
   };
   return (
     <>
