@@ -4,6 +4,7 @@ import latlng from "@/public/assests/LatLng.json";
 import DistrictSelector from "./DistrictSelector";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
+import useMap from "@/hooks/useMap";
 
 const LocationSelector = () => {
   const [value, setValue] = useState("");
@@ -12,6 +13,9 @@ const LocationSelector = () => {
     isvalidate: true,
     message: "",
   });
+
+  const { map, updateMapOption } = useMap();
+
   const router = useRouter();
 
   const handleDataFetch = () => {
@@ -32,14 +36,24 @@ const LocationSelector = () => {
     const centerValue = latlng.filter((item) => {
       return item.sgg_nm === value && item.emd_nm === division;
     });
-    // const centerPosition = new naver.maps.LatLng(
-    //   centerValue[0].center_lati,
-    //   centerValue[0].center_long
-    // );
 
     router.push(`main?q=${value}&d=${division}`);
     mutate("/division", division);
-    mutate("/center", [centerValue[0].center_lati, centerValue[0].center_long]);
+    if (map) {
+      updateMapOption(
+        [centerValue[0].center_lati, centerValue[0].center_long],
+        16
+      );
+      mutate("/center", [
+        centerValue[0].center_lati,
+        centerValue[0].center_long,
+      ]);
+    } else {
+      mutate("/center", [
+        centerValue[0].center_lati,
+        centerValue[0].center_long,
+      ]);
+    }
   };
   return (
     <>
