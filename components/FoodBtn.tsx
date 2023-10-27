@@ -17,7 +17,7 @@ const FoodBtn = () => {
     mutate("/shopType", type);
   };
   return (
-    <article className="absolute top-[2vh] left-[1vw] bg-white rounded-md shadow-[0_2px_5px_-1px_rgba(50,50,93,0.25),0_1px_3px_-1px_rgba(0,0,0,0.3)]">
+    <article className="flex absolute top-[2vh] left-[1vw] bg-white rounded-md shadow-[0_2px_5px_-1px_rgba(50,50,93,0.25),0_1px_3px_-1px_rgba(0,0,0,0.3)] z-[999]">
       <StyledFoodBtn id="all" onClick={handleClick}>
         {"   "}
         전체 보기

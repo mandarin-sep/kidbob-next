@@ -53,7 +53,7 @@ const Map = ({ onLoad, center }: Props) => {
         src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${NAVER_KEY}`}
         onLoad={initializeMap}
       />
-      <div id={mapId} style={{ width: "80%", height: "100%" }} />
+      <div id={mapId} style={{ width: "100%", height: "100%" }} />
     </>
   );
 };
