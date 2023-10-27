@@ -1,12 +1,8 @@
-import { useState, useEffect } from "react";
 import Loading from "./Loading";
 import ListItem from "./ListItem";
 import Search from "./Search";
-import useShopType from "@/hooks/useShopType";
 import useStores from "@/hooks/useStores";
 import { useRouter } from "next/router";
-import FoodBtn from "./FoodBtn";
-import { listItem } from "@/types/store";
 import useSWR from "swr";
 
 const List = () => {

@@ -1,4 +1,3 @@
-import { listItem } from "@/types/store";
 import List from "./List";
 import LocationSelector from "./LocationSelector";
 
