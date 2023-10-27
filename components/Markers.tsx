@@ -2,6 +2,7 @@ import useMap from "@/hooks/useMap";
 import Marker from "./Marker";
 import useStores from "@/hooks/useStores";
 import { useRouter } from "next/router";
+import { listItem } from "@/types/store";
 
 const Markers = () => {
   const router = useRouter();
@@ -17,7 +18,7 @@ const Markers = () => {
   if (isLoading) return null;
   return (
     <>
-      {shopData.map((store) => {
+      {shopData!.map((store) => {
         return (
           <Marker
             map={map}

@@ -3,7 +3,7 @@ import Hansik from "@/public/assests/hansik.svg";
 import Jjajangmyun from "@/public/assests/jjajangmyun.svg";
 import Pizza from "@/public/assests/pizza.svg";
 import Hamburger from "@/public/assests/hamburger.svg";
-import Donggga from "@/public/assests/donggga.svg";
+import Dongggas from "@/public/assests/dongggas.svg";
 import Dosirock from "@/public/assests/dosirock.svg";
 import Cafe from "@/public/assests/cafe.svg";
 import Store from "@/public/assests/store.svg";
@@ -43,7 +43,7 @@ const FoodBtn = () => {
         패스트푸드
       </StyledFoodBtn>
       <StyledFoodBtn id="18" onClick={handleClick}>
-        <Donggga width="16" height="16" />
+        <Dongggas width="16" height="16" />
         돈까스
       </StyledFoodBtn>
       <StyledFoodBtn id="19" onClick={handleClick}>

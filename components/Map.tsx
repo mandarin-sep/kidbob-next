@@ -25,7 +25,7 @@ const Map = ({ onLoad, center }: Props) => {
     }
     const mapOptions = {
       center: new window.naver.maps.LatLng(...initialCenter),
-      zoom: 16,
+      zoom: 15,
       minZoom: 9,
       scaleControl: false,
       mapDataControl: false,

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import latlng from "@/public/assests/LatLng.json";
-
 import DistrictSelector from "./DistrictSelector";
 import { useRouter } from "next/router";
 import { mutate } from "swr";
@@ -59,7 +58,7 @@ const LocationSelector = () => {
     <>
       <div className="w-full h-full flex justify-between">
         <select
-          className="w-9/12 h-full rounded mr-1 text-base"
+          className="w-9/12 h-full rounded mr-1 text-base border border-black"
           name="area"
           id="area-select"
           onChange={(e) => setValue(e.target.value)}

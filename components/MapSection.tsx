@@ -9,9 +9,6 @@ const MapSection = () => {
   const { initializeMap } = useMap();
   const onLoadMap = (map: NaverMap) => {
     initializeMap(map);
-    naver.maps.Event.addListener(map, "click", () => {
-      console.log("click map");
-    });
   };
   return (
     <>

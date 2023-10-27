@@ -10,7 +10,7 @@ const DistrictSelector = ({ location, setDivision }: DistrictPropsType) => {
   if (!district[location]) return <></>;
   return (
     <select
-      className="w-[30%] h-full mr-1 rounded text-base"
+      className="w-[30%] h-full mr-1 rounded text-base border border-black"
       onChange={(e) => setDivision(e.target.value)}
     >
       {district[location].map((item) => {
