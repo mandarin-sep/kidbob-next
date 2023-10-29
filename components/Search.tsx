@@ -28,6 +28,7 @@ const Search = () => {
         className="w-16 p-0 m-auto bg-transparent
        flex items-center justify-center"
         type="submit"
+        aria-label="가게명 검색 버튼"
       >
         <BiSearch size="1.25rem" color="#217af4" />
       </button>
